@@ -19,7 +19,9 @@ module.exports = function (opts) {
 	var totalFiles = 0;
 	var validExts = ['.jpg', '.jpeg', '.png', '.gif', '.svg'];
 
-	return through.obj(function (file, enc, cb) {
+	return through.obj(
+		{maxConcurrency: opts.maxConcurrency || 16},
+		function (file, enc, cb) {
 		if (file.isNull()) {
 			cb(null, file);
 			return;

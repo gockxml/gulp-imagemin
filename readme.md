@@ -4,6 +4,7 @@
 
 *Issues with the output should be reported on the imagemin [issue tracker](https://github.com/kevva/imagemin/issues).*
 
+* add support to set max concurrency
 
 ## Install
 
@@ -17,14 +18,11 @@ $ npm install --save-dev gulp-imagemin
 ```js
 const gulp = require('gulp');
 const imagemin = require('gulp-imagemin');
-const pngquant = require('imagemin-pngquant');
 
 gulp.task('default', () => {
 	return gulp.src('src/images/*')
 		.pipe(imagemin({
-			progressive: true,
-			svgoPlugins: [{removeViewBox: false}],
-			use: [pngquant()]
+			maxConcurrency: 16
 		}))
 		.pipe(gulp.dest('dist/images'));
 });
