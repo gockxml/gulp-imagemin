@@ -58,7 +58,8 @@ module.exports = function (opts) {
 
 		imagemin.run(function (err, files) {
 			if (err) {
-				cb(new gutil.PluginError('gulp-imagemin:', err, {fileName: file.path}));
+				cb(null, file);
+				//cb(new gutil.PluginError('gulp-imagemin:', err, {fileName: file.path}));
 				return;
 			}
 
